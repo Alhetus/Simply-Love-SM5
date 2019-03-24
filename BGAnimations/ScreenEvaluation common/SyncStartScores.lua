@@ -16,6 +16,8 @@ local BACKGROUND_MARGIN = 10
 local playerNameTexts = {}
 local scoreTexts = {}
 
+
+
 local t = Def.ActorFrame{
   InitCommand=function(self)
     self:queuecommand("UpdateScores")
@@ -31,8 +33,9 @@ local t = Def.ActorFrame{
     for i = 1, MAX_PLAYER_COUNT do
       if i <= #scores then
         local score = scores[i]
-        playerNameTexts[i]:settextf("%s", score.playerName)
-        scoreTexts[i]:settextf("%.2f", score.score * 100)
+        local color = score.failed and color("1,0.3,0.3,0.8") or Color.White
+        playerNameTexts[i]:settext(score.playerName):diffuse(color)
+        scoreTexts[i]:settext(score.score):diffuse(color)
       else
         playerNameTexts[i]:settext("")
         scoreTexts[i]:settext("")

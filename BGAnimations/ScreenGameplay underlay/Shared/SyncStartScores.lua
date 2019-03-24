@@ -21,8 +21,9 @@ local t = Def.ActorFrame{
 
       if scoreIndex > 0 and scoreIndex <= #scores then
         local score = scores[scoreIndex]
-        playerNameTexts[i]:settext(score.playerName)
-        scoreTexts[i]:settextf("%.2f", score.score * 100)
+        local color = score.failed and color("1,0.3,0.3,0.4") or color("1,1,1,0.5")
+        playerNameTexts[i]:settext(score.playerName):diffuse(color)
+        scoreTexts[i]:settext(score.score):diffuse(color)
       else
         playerNameTexts[i]:settext("")
         scoreTexts[i]:settextf("")
@@ -42,7 +43,6 @@ for i = 1, MAX_PLAYER_COUNT do
       self:CenterX()
       self:align(0.5, 0.5)
       self:zoom(0.75)
-      self:diffusealpha(0.5)
       self:y(SCREEN_HEIGHT - (i * 40) - Y_FROM_BOTTOM)
     end
   }
@@ -55,7 +55,6 @@ for i = 1, MAX_PLAYER_COUNT do
       self:CenterX()
       self:align(0.5, 0.5)
       self:zoom(0.25)
-      self:diffusealpha(0.5)
       self:y(SCREEN_HEIGHT - (i * 40) - Y_FROM_BOTTOM + 15)
     end
   }
