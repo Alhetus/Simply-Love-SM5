@@ -34,6 +34,8 @@ local permitted_profile_settings = {
 	HideDanger           = "boolean",
 	HideComboExplosions  = "boolean",
 
+	LaneCover            = "string",
+	NotefieldPosition    = "string",
 	LifeMeterType        = "string",
 	DataVisualizations   = "string",
 	TargetScore          = "number",

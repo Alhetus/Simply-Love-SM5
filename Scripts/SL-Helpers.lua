@@ -572,3 +572,45 @@ end
 IsAutoplay = function(player)
 	return GAMESTATE:GetPlayerState(player):GetPlayerController() ~= "PlayerController_Human"
 end
+
+GetPlayer1NotefieldX = function()
+	if SL.P1.ActiveModifiers.NotefieldPosition == "Edge" then
+		return GetNotefieldWidth(PLAYER_1) / 2
+	else
+		return _screen.cx-(_screen.w*160/640)
+	end
+end
+
+GetPlayer2NotefieldX = function()
+	if SL.P2.ActiveModifiers.NotefieldPosition == "Edge" then
+		return _screen.w - GetNotefieldWidth(PLAYER_2) / 2
+	else
+		return _screen.cx+(_screen.w*160/640)
+	end
+end
+
+-- In the MarginFunction defined in fallback theme, the position of another
+-- players notefield position affects the position of another players
+-- notefield position. That's bad, so we'll define our own that doesn't define
+-- center margins at all.
+SLGameplayMargins = function(enabled_players, styletype)
+	if Center1Player() then
+		return 0, 0, 0
+	end
+
+	local left = 0
+	local right = 0
+
+	for i, pn in ipairs(enabled_players) do
+		local center = THEME:GetMetric("ScreenGameplay", "Player"..ToEnumShortString(pn)..ToEnumShortString(styletype).."X")
+		local distanceToCenter = math.abs(_screen.cx - center)
+
+		if pn == PLAYER_1 then
+			left = _screen.cx - distanceToCenter * 2
+		elseif pn == PLAYER_2 then
+			right = _screen.w - (_screen.cx + distanceToCenter * 2)
+		end
+	end
+
+	return left, 0, right
+end

@@ -632,8 +632,11 @@ local Overrides = {
 				if list[3] then SL.Global.ScreenAfter.PlayerOptions3 = "ScreenPlayerOptions2" end
 			end
 		end
-	}
+	},
 	-------------------------------------------------------------------------
+	NotefieldPosition = {
+		Values = { 'Normal','Edge' },
+	},
 }
 
 

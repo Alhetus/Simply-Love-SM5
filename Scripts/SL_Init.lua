@@ -37,6 +37,7 @@ local PlayerDefaults = {
 				ErrorBarUp = false,
 				ErrorBarMultiTick = false,
 				LaneCover="0%",
+				NotefieldPosition = "Normal"
 			}
 			self.Streams = {
 				-- Chart identifiers for caching purposes.
