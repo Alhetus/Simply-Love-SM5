@@ -87,6 +87,14 @@ local function gen_vertices(player, width, height, desaturation)
 					-- for example, lerp_color(0.5, yellow, orange) will return the color that is halfway between yellow and orange
 					upper = lerp_color(math.abs(y/height), blue, purple )
 
+					-- render measures as blocks instead of sharp lines
+					if #verts > 1 then
+						local previousY = verts[#verts][1][2]
+						local previousUpper = verts[#verts][2]
+						verts[#verts+1] = {{x, 0, 0}, upper}
+						verts[#verts+1] = {{x, previousY, 0}, previousUpper}
+					end
+
 					verts[#verts+1] = {{x, 0, 0}, blue} -- bottom of graph (blue)
 					verts[#verts+1] = {{x, y, 0}, upper}  -- top of graph (somewhere between blue and purple)
 				end
