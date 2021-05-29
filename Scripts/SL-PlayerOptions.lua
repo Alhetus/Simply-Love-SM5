@@ -468,6 +468,10 @@ local Overrides = {
 		Values = { "Nothing", "Fail", "Restart" },
 	},
 	-------------------------------------------------------------------------
+	GrindTarget = { 
+		Values = function() return { 'Off', '100', '99.90', '99.75', '99.5', '99', '98.5', '98', '97', '96', '92', '80' } end,
+	},
+	-------------------------------------------------------------------------
 	GameplayExtras = {
 		SelectType = "SelectMultiple",
 		Values = function()

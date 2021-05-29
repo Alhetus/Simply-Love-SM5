@@ -22,6 +22,7 @@ local WantsPacemaker        = SL[pn].ActiveModifiers.Pacemaker
 local WantsTargetGraph      = SL[pn].ActiveModifiers.DataVisualizations == "Target Score Graph"
 local FailOnMissedTarget    = PREFSMAN:GetPreference("EventMode") and SL[pn].ActiveModifiers.ActionOnMissedTarget == "Fail"
 local RestartOnMissedTarget = PREFSMAN:GetPreference("EventMode") and SL[pn].ActiveModifiers.ActionOnMissedTarget == "Restart"
+local RestartOnMissedGrindTarget = PREFSMAN:GetPreference("EventMode") and SL[pn].ActiveModifiers.GrindTarget ~= "Off"
 
 -- if none of those four conditions apply, don't go any futher; just return now.
 if not (WantsPacemaker or WantsTargetGraph or FailOnMissedTarget or RestartOnMissedTarget) then return end
@@ -53,6 +54,20 @@ if WantsPacemaker or FailOnMissedTarget or RestartOnMissedTarget then
 	if FailOnMissedTarget or RestartOnMissedTarget then
 		af[#af+1] = LoadActor("./ActionOnTargetMissed.lua", player)
 	end
+end
+
+if RestartOnMissedGrindTarget then
+	af[#af+1] = Def.ActorFrame {
+		UpdateCommand=function(self)
+			local steps = GAMESTATE:GetCurrentSteps(pn)
+			rv = steps:GetRadarValues(pn)
+			local val = rv:GetValue('RadarCategory_TapsAndHolds')
+			local targetGrindScore = SL[pn].ActiveModifiers.GrindTarget
+			if GetGrindistaCanScoreBeOver(pss, tonumber(targetGrindScore), tonumber(val)) then
+				SCREENMAN:GetTopScreen():SetPrevScreenName("ScreenGameplay"):SetNextScreenName("ScreenGameplay"):begin_backing_out()
+			end
+		end
+	}
 end
 
 return af
