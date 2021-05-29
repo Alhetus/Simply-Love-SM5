@@ -318,9 +318,9 @@ SetGameModePreferences = function()
 	if SL.Global.GameMode == "Casual" then
 		SL.Global.ActiveModifiers.TimingWindows = {true,true,true,false,false}
 
-	-- Otherwise, we want all TimingWindows enabled by default.
+	-- Otherwise, we want Decents disabled by default.
 	else
- 		SL.Global.ActiveModifiers.TimingWindows = {true,true,true,true,true}
+ 		SL.Global.ActiveModifiers.TimingWindows = {true,true,true,true,false}
 	end
 
 	--------------------------------------------
