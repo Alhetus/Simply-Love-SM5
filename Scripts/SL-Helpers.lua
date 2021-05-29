@@ -572,39 +572,3 @@ end
 IsAutoplay = function(player)
 	return GAMESTATE:GetPlayerState(player):GetPlayerController() ~= "PlayerController_Human"
 end
-
-function GetGrindistaCurrentPoints(pss)
-	local score = pss:GetTapNoteScores("TapNoteScore_W1")*5
-	+pss:GetTapNoteScores("TapNoteScore_W2")*4
-	+pss:GetTapNoteScores("TapNoteScore_W3")*2
-	return score
-end
-
-function GetGrindistaCurrentMaxPoints(pss)
-	local max = (pss:GetTapNoteScores("TapNoteScore_W1")
-	+pss:GetTapNoteScores("TapNoteScore_W2")
-	+pss:GetTapNoteScores("TapNoteScore_W3")
-	+pss:GetTapNoteScores("TapNoteScore_W4")
-	+pss:GetTapNoteScores("TapNoteScore_W5")
-	+pss:GetTapNoteScores("TapNoteScore_Miss"))*5
-	return max 
-end
-
-function GetGrindistaMaxPoints(radarvalues)
-	local DPMax = radarvalues*5
-	return DPMax
-end
-
-function GetGrindistaScore(pss, radarvalues)
-	local maxScore =  GetGrindistaMaxPoints(radarvalues)
-	local score = GetGrindistaCurrentPoints(pss)
-	local finaldp = score/maxScore
-	return finaldp
-end
-
-function GetGrindistaCanScoreBeOver(pss, target, radarvalues)
-	local DPCurr = GetGrindistaCurrentPoints(pss)
-	local DPCurrMax = GetGrindistaCurrentMaxPoints(pss)
-	local DPMax = GetGrindistaMaxPoints(radarvalues)
-	return ((DPCurrMax - DPCurr) > (DPMax * (1 - (target/100))))	
-end
