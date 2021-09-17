@@ -38,7 +38,7 @@ local function drawCheeseBurgers(position, align, calories)
 		end
 	}
 
-	local burgerCount = 4.25 -- (calories / 600)
+	local burgerCount = calories / 600
 	local burgerIndex = 0
 
 	while burgerIndex < burgerCount do
