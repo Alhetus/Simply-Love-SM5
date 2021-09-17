@@ -5,15 +5,15 @@ local playeroptions = GAMESTATE:GetPlayerState(player):GetPlayerOptions("ModsLev
 
 local filter = Def.Quad{
     InitCommand=function(self)
-        local headerHeight = SL.Global.GameMode == "StomperZ" and 40 or 80
-        local percentage = mods.LaneCover:gsub("%%","")/100
+        local headerHeight = 80
+        local percentage = mods.LaneCover:gsub("%%","") / 100
 
 		self:diffuse(Color.Black)
 			:xy(GetNotefieldX(player), _screen.cy + (headerHeight / 2))
             :zoomto(GetNotefieldWidth(player), _screen.h - headerHeight)
 
         if (playeroptions:UsingReverse()) then
-            self:cropbottom(1- percentage)
+            self:cropbottom(1 - percentage)
         else
             self:croptop(1 - percentage)
         end
