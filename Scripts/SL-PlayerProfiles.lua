@@ -35,6 +35,7 @@ local permitted_profile_settings = {
 	HideComboExplosions  = "boolean",
 
     LaneCover            = "string",
+	BackgroundBrightness = "string",
 	LifeMeterType        = "string",
 	DataVisualizations   = "string",
 	TargetScore          = "number",
