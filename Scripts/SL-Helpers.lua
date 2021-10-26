@@ -155,6 +155,7 @@ GetNotefieldWidth = function()
 		local game_widths = NoteFieldWidth[game:GetName()]
 		local style = GAMESTATE:GetCurrentStyle()
 		if style then
+			-- TODO: should this take mini% into account?
 			return game_widths[style:GetName()]
 		end
 	end
