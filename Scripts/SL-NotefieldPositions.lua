@@ -22,10 +22,11 @@ GetPlayer2NotefieldX = function()
 	local percent = SL.P2.ActiveModifiers.NotefieldPositionX:gsub("%%","") / 100
 	local halfNotefieldWidth = GetNotefieldWidth(PLAYER_2) / 2
 
-	-- player2 min X pos is center of screen plus notefield size offset
-	local minXPosition = _screen.cx + halfNotefieldWidth
-	-- player2 max X pos is right edge of screen minus notefield size offset
-	local maxXPosition = _screen.w - halfNotefieldWidth
+	-- player2 min X pos is rigft edge of screen minus notefield size offset
+	local minXPosition = _screen.w - halfNotefieldWidth 
+	
+	-- player2 max X pos is cnterf of tthe of screen plus notefield size offset
+	local maxXPosition = _screen.cx + halfNotefieldWidth 
 
 	-- interpolate between min and max
 	return math.round(Lerp(minXPosition, maxXPosition, percent))
