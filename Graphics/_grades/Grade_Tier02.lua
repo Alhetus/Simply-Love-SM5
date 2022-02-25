@@ -11,10 +11,16 @@ return Def.ActorFrame{
 	LoadActor("star.lua", pss)..{
 		OnCommand=function(self) self:x(45):y(40):zoom(0.5):effectoffset(0.4):pulse():effectmagnitude(0.9,1,0) end
 	},
-	
 	--half
-	LoadActor("star999.lua", pss)..{
+	LoadActor("halfstar.lua", pss)..{
 		OnCommand=function(self) self:x(90):y(-40):zoom(0.5):effectoffset(0.2):pulse():effectmagnitude(0.9,1,0):sleep(3):queuecommand("Spin") end,
+		SpinCommand=function(self) Spin(self) end
+	},
+	
+	--trophy
+	
+	LoadActor("trophy.lua", pss)..{
+		OnCommand=function(self) self:x(130):y(50):zoom(0.6):effectoffset(0.2):pulse():effectmagnitude(0.9,1,0):sleep(3):queuecommand("Spin") end,
 		SpinCommand=function(self) Spin(self) end
 	}
 }

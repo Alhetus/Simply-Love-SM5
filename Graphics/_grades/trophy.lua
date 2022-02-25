@@ -2,7 +2,7 @@ local pss = ...
 local t = Def.ActorFrame{}
 
 -- flag (all fantastics except 1 ex): stars
-t[#t+1] = LoadActor("./assets/star999.png")..{
+t[#t+1] = LoadActor("./assets/trophy.png")..{
 	OnCommand=function(self)
 		if pss ~= nil and pss:GetTapNoteScores('TapNoteScore_Miss') == 0 and
 				pss:GetTapNoteScores('TapNoteScore_W5') == 0 and
@@ -19,7 +19,7 @@ t[#t+1] = LoadActor("./assets/star999.png")..{
 	end,
 }
 
-t[#t+1] = LoadActor("./assets/star999.png")..{
+t[#t+1] = LoadActor("./assets/trophy.png")..{
 	OnCommand=function(self)
 		self:visible(false)
 		if pss ~= nil and pss:GetTapNoteScores('TapNoteScore_Miss') == 0 and
